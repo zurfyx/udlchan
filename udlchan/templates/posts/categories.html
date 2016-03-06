@@ -1,5 +1,10 @@
 {% extends "posts/base.html" %}
 
 {% block posts_content %}
-List of categories # TODO
+    <h2>Categories</h2>
+    <ul>
+        {% for category in categories %}
+            <li>{{category.title}}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
