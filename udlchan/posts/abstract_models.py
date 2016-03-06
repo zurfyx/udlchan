@@ -21,6 +21,9 @@ class AbstractCategory(AbstractTimeStamped):
     title = models.CharField(max_length=300, default='')
     description = models.CharField(max_length=500, default='')
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         abstract = True
         verbose_name_plural='categories'
@@ -36,6 +39,9 @@ class AbstractPost(AbstractTimeStamped):
     content = models.CharField(max_length=10000, default='')
     category = models.ForeignKey('posts.Post', verbose_name='Post')
     user = models.CharField(max_length=30)  # TODO
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         abstract = True
