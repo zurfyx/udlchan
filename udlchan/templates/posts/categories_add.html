@@ -1,12 +1,15 @@
 {% extends "posts/base.html" %}
 
 {% block posts_content %}
-    <h2>Add category</h2>
+<h2>Add category</h2>
 
-    <form method="POST">
-        <p>{{ form_errors }}</p>
-        {% csrf_token %}
-        {{ form_add }}
-        <button type="submit">Add</button>
-    </form>
+<form method="POST">
+    {% if form_add.errors %}
+    <p>Form validation errors!</p>
+    {% endif %}
+
+    {% csrf_token %}
+    {{ form_add }}
+    <button type="submit">Add</button>
+</form>
 {% endblock %}
