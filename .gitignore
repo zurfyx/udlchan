@@ -1,0 +1,4 @@
+*.pyc
+.idea/
+
+udlchan/db.sqlite3
