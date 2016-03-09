@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>
-    <a href="{% url "posts:categories" %}">Categories list</a>
-    <a href="{% url "posts:categories_add" %}">Add category</a>
-</p>
-{% block posts_content %}
-{% endblock %}
+    <p>
+        <a href="{% url "posts:categories" %}">Categories list</a>
+        <a href="{% url "posts:categories_add" %}">Add category</a>
+    </p>
+    {% block posts_content %}
+    {% endblock %}
 {% endblock %}

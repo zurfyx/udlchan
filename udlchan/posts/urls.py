@@ -1,19 +1,27 @@
 from django.conf.urls import url
 
-from .views import CategoriesList, CategoriesAdd
+from .views import CategoryList, CategoryAdd
+from .views import CategoryPostList
 
 urlpatterns = [
-    # Add new category
-    url(
-        r'^add$',
-        CategoriesAdd.as_view(),
-        name='categories_add'
-    ),
-
     # List of categories
     url(
         r'^$',
-        CategoriesList.as_view(),
+        CategoryList.as_view(),
         name='categories'
     ),
+
+    # Add new category
+    url(
+        r'^category/add$',
+        CategoryAdd.as_view(),
+        name='categories_add'
+    ),
+
+    # List of posts in a category
+    url(
+        r'^category/(?P<category>\w+)$',
+        CategoryPostList.as_view(),
+        name='category_posts'
+    )
 ]

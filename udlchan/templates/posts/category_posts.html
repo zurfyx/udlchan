@@ -1,0 +1,13 @@
+{% extends "posts/base.html" %}
+
+{% block posts_content %}
+    <h2>{{ category }}</h2>
+    <ul>
+        {% for post in object_list %}
+            <li>
+                {{ post.title }}<br>
+                {{ post.content }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
