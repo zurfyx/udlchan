@@ -3,7 +3,7 @@
 {% block posts_content %}
     <h2>Categories</h2>
     <ul>
-        {% for category in categories %}
+        {% for category in object_list %}
             <li>{{category.title}}</li>
         {% endfor %}
     </ul>

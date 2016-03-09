@@ -1,23 +1,15 @@
 from django.core.urlresolvers import reverse
-from django.views.generic import TemplateView, CreateView, FormView
+from django.views.generic import ListView, CreateView
 from .models import Category, Post
 from .forms import CategoryForm
 
 
-class CategoriesList(TemplateView):
+class CategoriesList(ListView):
     """
     Displays list of categories
     """
+    model = Category
     template_name = "posts/categories.html"
-
-    def get(self, request, *args, **kwargs):
-        self.categories = Category.objects.all()
-        return super(CategoriesList, self).get(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super(CategoriesList, self).get_context_data(**kwargs)
-        context['categories'] = self.categories
-        return context
 
 
 class CategoriesAdd(CreateView):
