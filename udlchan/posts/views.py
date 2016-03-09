@@ -18,7 +18,7 @@ class CategoriesAdd(CreateView):
     """
     model = Category
     form_class = CategoryForm
-    template_name = 'posts/categories_add.html'
+    template_name = 'posts  /categories_add.html'
 
     def get_success_url(self):
         return reverse('posts:categories')

@@ -37,7 +37,7 @@ class AbstractPost(AbstractTimeStamped):
     """
     title = models.CharField(max_length=300, default='')
     content = models.CharField(max_length=10000, default='')
-    category = models.ForeignKey('posts.Post', verbose_name='Post')
+    category = models.ForeignKey('posts.Post', verbose_name='Category')
     user = models.CharField(max_length=30)  # TODO
 
     def __str__(self):
