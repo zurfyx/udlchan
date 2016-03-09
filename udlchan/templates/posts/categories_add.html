@@ -4,12 +4,12 @@
 <h2>Add category</h2>
 
 <form method="POST">
-    {% if form_add.errors %}
+    {% if form.errors %}
     <p>Form validation errors!</p>
     {% endif %}
 
     {% csrf_token %}
-    {{ form_add }}
+    {{ form }}
     <button type="submit">Add</button>
 </form>
 {% endblock %}
