@@ -30,12 +30,12 @@ class CategoryPostList(ListView):
     Shows list of posts in a Category.
     """
     model = Post
-    template_name = 'posts/category_posts.html'
+    template_name = 'posts/category_topics.html'
 
     def get_queryset(self):
         self.category = get_object_or_404(Category,
                                           title=self.kwargs['category'])
-        return Post.objects.filter(category=self.category)
+        return Post.objects.filter(category=self.category, main=None)
 
     def get_context_data(self, **kwargs):
         context = super(CategoryPostList, self).get_context_data(**kwargs)
@@ -53,8 +53,15 @@ class TopicShow(ListView):
     def get_queryset(self):
         self.main_post = get_object_or_404(Post, id=self.kwargs['post'],
                                            main=None, parent=None)
-        return Post.objects.filter(category=self.main_post.category,
-                                   main=self.main_post)
+        #return Post.objects.filter(category=self.main_post.category,
+        #                           main=self.main_post)
+        sample = [
+            {'title':'first', 'content':'body', 'nest_level':'0'},
+            {'title':'nested first', 'content':'body', 'nest_level':1},
+            {'title':'second', 'content':'body2', 'nest_level':'0'},
+            {'title':'third', 'content':'body3', 'nest_level':'0'}
+        ]
+        return sample
 
     def get_context_data(self, **kwargs):
         context = super(TopicShow, self).get_context_data(**kwargs)

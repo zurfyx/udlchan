@@ -5,8 +5,11 @@
     <ul>
         {% for post in object_list %}
             <li>
-                {{ post.title }}<br>
-                {{ post.content }}
+                <a href="{% url "posts:category_topic" post.id %}">
+                    {{ post.title }}
+                </a>
+                <br>
+                {{ post.content | truncatechars:10 }}
             </li>
         {% endfor %}
     </ul>

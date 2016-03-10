@@ -5,8 +5,8 @@
     <p>{{ main_post.content }}</p>
     <hr>
     <hr>
-    {%  for post in object_list %}
-        <p>
+    {% for post in object_list %}
+        <p style="padding-left:{% widthratio post.nest_level 1 20 %}px">
             <b>{{ post.title }}</b><br>
             {{ post.content }}
         </p>
