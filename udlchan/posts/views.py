@@ -43,9 +43,20 @@ class CategoryPostList(ListView):
         return context
 
 
-class PostShow(DetailView):
+class TopicShow(ListView):
     """
-    Shows a specific post.
+    Shows a specific topic, a main post + its descendant posts
     """
     model = Post
-    template_name = 'posts/'
+    template_name = 'posts/topic.html'
+
+    def get_queryset(self):
+        self.main_post = get_object_or_404(Post, id=self.kwargs['post'],
+                                           main=None, parent=None)
+        return Post.objects.filter(category=self.main_post.category,
+                                   main=self.main_post)
+
+    def get_context_data(self, **kwargs):
+        context = super(TopicShow, self).get_context_data(**kwargs)
+        context['main_post'] = self.main_post
+        return context

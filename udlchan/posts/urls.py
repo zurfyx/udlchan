@@ -1,21 +1,21 @@
 from django.conf.urls import url
 
-from .views import CategoryList, CategoryAdd
-from .views import CategoryPostList
+from .views import CategoryList, CategoryAdd, CategoryPostList
+from .views import TopicShow
 
 urlpatterns = [
     # List of categories
     url(
         r'^$',
         CategoryList.as_view(),
-        name='categories'
+        name='category'
     ),
 
     # Add new category
     url(
         r'^category/add$',
         CategoryAdd.as_view(),
-        name='categories_add'
+        name='category_add'
     ),
 
     # List of posts in a category
@@ -23,5 +23,12 @@ urlpatterns = [
         r'^category/(?P<category>\w+)$',
         CategoryPostList.as_view(),
         name='category_posts'
+    ),
+
+    # Show topic = main post + descendant posts
+    url(
+        r'^topic/(?P<post>\w+)$',
+        TopicShow.as_view(),
+        name='category_topic'
     )
 ]

@@ -23,11 +23,19 @@ class Post(AbstractTimeStamped):
     A publication consist of a title and content.
     It will always belong to a category.
     It might have a parent post.
+
+    Main refers to the first post. It will be null for the main post, and it
+    will contain the reference on the child posts.
+    Parent refers to the parent post. It will be null for any post but the
+    nested ones.
     """
     title = models.CharField(max_length=300, default='')
     content = models.CharField(max_length=10000, default='')
-    category = models.ForeignKey(Category, default='', verbose_name='Category')
-    parent = models.ForeignKey('self', null=True, verbose_name='Parent')
+    category = models.ForeignKey(Category, verbose_name='Category')
+    main = models.ForeignKey('self', null=True, verbose_name='Main',
+                             related_name='post_main')
+    parent = models.ForeignKey('self', null=True, verbose_name='Parent',
+                               related_name='post_parent')
     user = models.CharField(max_length=30)  # TODO
 
     def __str__(self):
