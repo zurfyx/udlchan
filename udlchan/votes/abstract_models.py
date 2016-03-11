@@ -5,10 +5,13 @@ from django.db import models
 
 class AbstractVote(models.Model):
     """
-    Keeps track of upvotes and downvotes.
+    Keeps track of upvotes.
     """
-    up = models.IntegerField()
-    down = models.IntegerField()
+    up = models.IntegerField(default=0)
+    down = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.up) + '/' + str(self.down)
 
     class Meta:
         abstract = True

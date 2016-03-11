@@ -1,9 +1,7 @@
 {% extends "posts/base.html" %}
 
 {% block posts_content %}
-    Magical test: {{ vv.title }}, {{ vvv }}
-    <hr>
-    <h2>Post: {{ main_post.title }}</h2>
+    <h2>{{ main_post.vote.up }}/{{ main_post.vote.down }} Post: {{ main_post.title }}</h2>
     <p>{{ main_post.content }}</p>
     <hr>
     <hr>

@@ -3,8 +3,7 @@ from __future__ import unicode_literals
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from .abstract_models import AbstractTimeStamped
-#from votes.managers import VoteManager
-from votes.models import Vote
+from votes.managers import VoteManager
 
 
 class Category(AbstractTimeStamped):
@@ -44,7 +43,7 @@ class Post(AbstractTimeStamped):
     parent = models.ForeignKey('self', null=True, verbose_name='Parent',
                                related_name='post_parent')
     user = models.CharField(max_length=30)  # TODO
-    vote = GenericRelation(Vote)
+    vote = VoteManager()
 
     def __str__(self):
         return self.title
