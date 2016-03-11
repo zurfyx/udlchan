@@ -22,7 +22,7 @@ class CategoryAdd(CreateView):
     template_name = 'posts/categories_add.html'
 
     def get_success_url(self):
-        return reverse('posts:categories')
+        return reverse('posts:category')
 
 
 class CategoryPostList(ListView):
