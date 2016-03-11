@@ -26,8 +26,8 @@ class Post(AbstractTimeStamped):
     It will always belong to a category.
     It might have a parent post.
 
-    Main refers to the first post. It will be null for the main post, and it
-    will contain the reference on the child posts.
+    Main refers to the first post. It will be null only for the main post, and
+    it will contain the reference on the child posts.
     Parent refers to the parent post. It will be null for any post but the
     nested ones.
 

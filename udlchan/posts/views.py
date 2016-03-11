@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, CreateView, DetailView
 from .models import Category, Post
 from .forms import CategoryForm
+from .utils import PostSorter
 
 
 class CategoryList(ListView):
@@ -50,18 +51,22 @@ class TopicShow(ListView):
     model = Post
     template_name = 'posts/topic.html'
 
+
+
     def get_queryset(self):
         self.main_post = get_object_or_404(Post, id=self.kwargs['post'],
                                            main=None, parent=None)
-        #return Post.objects.filter(category=self.main_post.category,
-        #                           main=self.main_post)
+
         sample = [
             {'title':'first', 'content':'body', 'nest_level':'0'},
             {'title':'nested first', 'content':'body', 'nest_level':1},
             {'title':'second', 'content':'body2', 'nest_level':'0'},
             {'title':'third', 'content':'body3', 'nest_level':'0'}
         ]
-        return sample
+        #return sample
+        queryset = Post.objects.filter(category=self.main_post.category,
+                                   main=self.main_post)
+        return PostSorter.sort(queryset)
 
     def get_context_data(self, **kwargs):
         context = super(TopicShow, self).get_context_data(**kwargs)
