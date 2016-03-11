@@ -51,8 +51,6 @@ class TopicShow(ListView):
     model = Post
     template_name = 'posts/topic.html'
 
-
-
     def get_queryset(self):
         self.main_post = get_object_or_404(Post, id=self.kwargs['post'],
                                            main=None, parent=None)
