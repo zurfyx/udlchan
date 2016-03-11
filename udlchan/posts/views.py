@@ -56,14 +56,6 @@ class TopicShow(ListView):
     def get_queryset(self):
         self.main_post = get_object_or_404(Post, id=self.kwargs['post'],
                                            main=None, parent=None)
-
-        sample = [
-            {'title':'first', 'content':'body', 'nest_level':'0'},
-            {'title':'nested first', 'content':'body', 'nest_level':1},
-            {'title':'second', 'content':'body2', 'nest_level':'0'},
-            {'title':'third', 'content':'body3', 'nest_level':'0'}
-        ]
-        #return sample
         queryset = Post.objects.filter(category=self.main_post.category,
                                    main=self.main_post)
         return PostSorter.sort(queryset)
