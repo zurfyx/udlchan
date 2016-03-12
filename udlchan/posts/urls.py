@@ -27,7 +27,7 @@ urlpatterns = [
 
     # Show topic = main post + descendant posts
     url(
-        r'^topic/(?P<post>\w+)$',
+        r'^topic/(?P<post>\d+)$',
         TopicShow.as_view(),
         name='category_topic'
     )
