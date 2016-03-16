@@ -7,10 +7,15 @@
 
 {% block posts_content %}
     <h2>
-        <span class="vote_label">{{ main_post.vote.up }}</span>
-        <a class="vote" href="{% url "posts:post_upvote" main_post.id %}">&uarr;</a>/
-        <span class="vote_label">{{ main_post.vote.down }}</span>
-        <a class="vote" href="{% url "posts:post_downvote" main_post.id %}">&darr;</a>
+        <upvotes>
+            <a class="vote" href="{% url "posts:post_upvote" main_post.id %}">&uarr;</a>
+            <span class="vote_label">{{ main_post.vote.up }}</span>
+        </upvotes>
+        /
+        <downvotes>
+            <a class="vote" href="{% url "posts:post_downvote" main_post.id %}">&darr;</a>
+            <span class="vote_label">{{ main_post.vote.down }}</span>
+        </downvotes>
         Post: {{ main_post.title }}</h2>
     <p>{{ main_post.content }}</p>
     <hr>

@@ -2,16 +2,23 @@
 
     var vote = {
         ajax: function(href, callback) {
-
+            $.get(href, function(data, err) {
+                return callback(data.votes);
+            }).fail(function() {
+                return callback('Error!');
+            });
         },
         listener: function() {
+            var self = this;
             $('.vote').click(function(e) {
-                e.preventDefault();
                 var voteObj = $(this);
                 var href = voteObj.attr('href');
-                $.get(href, function(data, err) {
-                    $(voteObj.parent()).find('.vote_label').text(data.votes);
+                e.preventDefault();
+
+                self.ajax(href, function(data) {
+                    voteObj.next('.vote_label').text(data);
                 });
+
             });
         },
         init: function() {
