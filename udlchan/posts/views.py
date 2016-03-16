@@ -1,6 +1,7 @@
+from django.http import JsonResponse
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import ListView, CreateView, DetailView, View
 from .models import Category, Post
 from .forms import CategoryForm
 from .utils import PostSorter
@@ -62,3 +63,31 @@ class TopicShow(ListView):
         context = super(TopicShow, self).get_context_data(**kwargs)
         context['main_post'] = self.main_post
         return context
+
+
+class PostVote(View):
+    """
+    JSON response of number of votes after voting (either up or down)
+    """
+    model = Post
+
+    def vote(self, post, up=True):
+        post = get_object_or_404(self.model, id=post)
+        votes = post.vote.upvote() if up else post.vote.downvote()
+        return votes
+
+    def upvote(self, request, post):
+        upvotes = self.vote(post, True)
+        return JsonResponse({
+            'post': post,
+            'votes': upvotes,
+            'votes_type': 'up'
+        })
+
+    def downvote(self, request, post):
+        downvotes = self.vote(post, False)
+        return JsonResponse({
+            'post': post,
+            'votes': downvotes,
+            'votes_type': 'down'
+        })

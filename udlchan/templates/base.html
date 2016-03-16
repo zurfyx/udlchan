@@ -3,9 +3,16 @@
     <title>UDLChan project</title>
 </head>
 <body>
-<h1>TODO</h1>
-<hr>
-{% block content %}
-{% endblock %}
+    <h1>TODO</h1>
+    <hr>
+    {% block content %}
+    {% endblock %}
+
+    {% block cdn_scripts %}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    {% endblock %}
+
+    {% block scripts %}
+    {% endblock %}
 </body>
 </html>

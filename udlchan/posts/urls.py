@@ -2,6 +2,7 @@ from django.conf.urls import url
 
 from .views import CategoryList, CategoryAdd, CategoryPostList
 from .views import TopicShow
+from .views import PostVote
 
 urlpatterns = [
     # List of categories
@@ -30,5 +31,19 @@ urlpatterns = [
         r'^topic/(?P<post>\d+)$',
         TopicShow.as_view(),
         name='category_topic'
-    )
+    ),
+
+    # Upvote post
+    url(
+        r'topic/(?P<post>\d+)/up',
+        PostVote().upvote,
+        name='post_upvote'
+    ),
+
+    # Downvote post
+    url(
+        r'topic/(?P<post>\d+)/down',
+        PostVote().downvote,
+        name='post_downvote'
+    ),
 ]

@@ -10,7 +10,8 @@ class Category(AbstractTimeStamped):
     """
     A category will consist of a title and a description.
     """
-    title = models.CharField(unique=True, max_length=300, default='')
+    title = models.CharField(db_index=True, unique=True, max_length=300,
+                             default='')
     description = models.CharField(max_length=500, default='')
 
     def __str__(self):
