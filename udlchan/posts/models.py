@@ -21,30 +21,28 @@ class Category(AbstractTimeStamped):
         verbose_name_plural = 'categories'
 
 
-class Post(AbstractTimeStamped):
+class Topic(AbstractTimeStamped):
     """
-    A publication consist of a title and content.
-    It will always belong to a category.
-    It might have a parent post.
-
-    Main refers to the first post. It will be null only for the main post, and
-    it will contain the reference on the child posts.
-    Parent refers to the parent post. It will be null for any post but the
-    nested ones.
-
-    It will make use votes app to register posts upvotes / downvotes, as a
-    1 to 1 field.
+    A topic represents forum "thread" first post.
+    It will always belong to a category and it will contain comments.
     """
-    title = models.CharField(max_length=300, default='')
-    content = models.CharField(max_length=10000, default='')
     category = models.ForeignKey(Category, verbose_name='Category',
                                  on_delete=models.CASCADE)
-    main = models.ForeignKey('self', null=True, verbose_name='Main',
-                             related_name='post_main')
+    title = models.CharField(max_length=300)
+    content = models.CharField(max_length=10000, default='')
+    vote = VoteManager()
+
+
+class Comment(AbstractTimeStamped):
+    """
+    A comment will consist of text content (description).
+    It will belong to a topic, and it can be nested into other parent Comment.
+    """
+    topic = models.ForeignKey(Topic)
     parent = models.ForeignKey('self', null=True, verbose_name='Parent',
                                related_name='post_parent')
-    user = models.CharField(max_length=30)  # TODO
+    content = models.CharField(max_length=10000, default='')
     vote = VoteManager()
 
     def __str__(self):
-        return self.title
+        return self.content if self.content <= 30 else self.content[:30] + '...'
