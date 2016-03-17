@@ -5,7 +5,7 @@
     <ul>
         {% for category in object_list %}
             <li>
-                <a href="{% url "posts:category_posts" category.title %}">
+                <a href="{% url "posts:category" category.title %}">
                     {{category.title}}
                 </a>
             </li>

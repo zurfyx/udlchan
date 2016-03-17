@@ -23,7 +23,7 @@ urlpatterns = [
     url(
         r'^category/(?P<category>\w+)$',
         TopicList.as_view(),
-        name='category_posts'
+        name='category'
     ),
 
     # Show topic

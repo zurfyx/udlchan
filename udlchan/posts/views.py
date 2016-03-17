@@ -21,7 +21,7 @@ class CategoryAdd(CreateView):
     """
     model = Category
     form_class = CategoryForm
-    template_name = 'posts/category_add.html'
+    template_name = 'posts/category_create.html'
 
     def get_success_url(self):
         return reverse('posts:category')
@@ -67,7 +67,13 @@ class TopicAdd(CreateView):
     """
     Create a new topic.
     """
-    pass
+    model = Topic
+    form_class = TopicForm
+    template_name = 'posts/topic_create.html'
+
+    def get_success_url(self):
+        return reverse('posts:category',
+                       kwargs={'category': self.kwargs['category']})
 
 
 class CommentAdd(CreateView):
