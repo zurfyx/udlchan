@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
-from .views import CategoryList, CategoryAdd, CategoryPostList
-from .views import TopicShow
+from .views import CategoryList, CategoryAdd
+from .views import TopicList, TopicShow
 from .views import PostVote
 
 urlpatterns = [
@@ -19,16 +19,16 @@ urlpatterns = [
         name='category_add'
     ),
 
-    # List of posts in a category
+    # List of topics in a category
     url(
         r'^category/(?P<category>\w+)$',
-        CategoryPostList.as_view(),
+        TopicList.as_view(),
         name='category_posts'
     ),
 
-    # Show topic = main post + descendant posts
+    # Show topic
     url(
-        r'^topic/(?P<post>\d+)$',
+        r'^topic/(?P<pk>\d+)$',
         TopicShow.as_view(),
         name='category_topic'
     ),

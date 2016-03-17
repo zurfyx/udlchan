@@ -2,8 +2,8 @@ from django.http import JsonResponse
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, CreateView, DetailView, View
-from .models import Category, Post
-from .forms import CategoryForm
+from .models import Category, Topic, Comment
+from .forms import CategoryForm, TopicForm, CommentForm
 from .utils import PostSorter
 
 
@@ -21,47 +21,45 @@ class CategoryAdd(CreateView):
     """
     model = Category
     form_class = CategoryForm
-    template_name = 'posts/categories_add.html'
+    template_name = 'posts/category_add.html'
 
     def get_success_url(self):
         return reverse('posts:category')
 
 
-class CategoryPostList(ListView):
+class TopicList(ListView):
     """
-    Shows list of posts in a Category.
+    Shows list of topics in a Category.
     """
-    model = Post
-    template_name = 'posts/category_topics.html'
+    model = Topic
+    template_name = 'posts/topics.html'
 
     def get_queryset(self):
         self.category = get_object_or_404(Category,
                                           title=self.kwargs['category'])
-        return Post.objects.filter(category=self.category, main=None)
+        return self.model.objects.filter(category=self.category)
 
     def get_context_data(self, **kwargs):
-        context = super(CategoryPostList, self).get_context_data(**kwargs)
+        context = super(TopicList, self).get_context_data(**kwargs)
         context['category'] = self.category
         return context
 
 
 class TopicShow(ListView):
     """
-    Shows a specific topic, a main post + its descendant posts
+    Shows a specific topic, and its comments.
     """
-    model = Post
+    model = Topic
     template_name = 'posts/topic.html'
 
     def get_queryset(self):
-        self.main_post = get_object_or_404(Post, id=self.kwargs['post'],
-                                           main=None, parent=None)
-        queryset = Post.objects.filter(category=self.main_post.category,
-                                   main=self.main_post)
-        return PostSorter.sort(queryset)
+        self.object = get_object_or_404(self.model, id=self.kwargs['pk'])
+        self.comments = Comment.objects.filter(topic=self.object)
 
     def get_context_data(self, **kwargs):
         context = super(TopicShow, self).get_context_data(**kwargs)
-        context['main_post'] = self.main_post
+        context['object'] = self.object
+        context['comments'] = self.comments
         return context
 
 
@@ -69,7 +67,7 @@ class PostVote(View):
     """
     JSON response of number of votes after voting (either up or down)
     """
-    model = Post
+    model = Comment
 
     def vote(self, post, up=True):
         post = get_object_or_404(self.model, id=post)
