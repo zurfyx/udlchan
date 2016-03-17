@@ -85,7 +85,7 @@ class CommentAdd(CreateView):
     template_name = 'posts/comment_create.html'
 
     def get_success_url(self):
-        return reverse('posts:category_topic',
+        return reverse('posts:topic',
                        kwargs={'pk': self.kwargs['topic']})
 
 

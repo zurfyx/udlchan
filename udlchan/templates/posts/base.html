@@ -4,10 +4,6 @@
 {% endblock %}
 
 {% block content %}
-    <p>
-        <a href="{% url "posts:category" %}">Categories list</a>
-        <a href="{% url "posts:category_add" %}">Add category</a>
-    </p>
     {% block posts_content %}
     {% endblock %}
 {% endblock %}

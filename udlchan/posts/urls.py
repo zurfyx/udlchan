@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
 from .views import CategoryList, CategoryAdd
-from .views import TopicList, TopicShow
+from .views import TopicList, TopicShow, TopicAdd
 from .views import CommentAdd, CommentVote
 
 urlpatterns = [
@@ -26,11 +26,18 @@ urlpatterns = [
         name='category'
     ),
 
+    # Add new topic
+    url(
+        r'^category/(?P<category>\w+)/topic$',
+        TopicAdd.as_view(),
+        name='topic_add'
+    ),
+
     # Show topic
     url(
         r'^topic/(?P<pk>\d+)$',
         TopicShow.as_view(),
-        name='category_topic'
+        name='topic'
     ),
 
     # Add new comment

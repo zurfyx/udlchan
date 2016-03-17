@@ -1,11 +1,15 @@
 {% extends "posts/base.html" %}
 
 {% block posts_content %}
+    <p>
+        <a href="{% url "posts:category" %}">Categories</a>
+        <a href="{% url "posts:topic_add" category.title %}">Create topic</a>
+    </p>
     <h2>{{ category }}</h2>
     <ul>
         {% for post in object_list %}
             <li>
-                <a href="{% url "posts:category_topic" post.id %}">
+                <a href="{% url "posts:topic" post.id %}">
                     {{ post.title }}
                 </a>
                 <br>
