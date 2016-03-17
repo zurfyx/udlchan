@@ -1,8 +1,14 @@
 from django.contrib import admin
-from .models import Post
+from .models import Category, Topic, Comment
 
 
-class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'user', 'category', 'modified')
+class TopicAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category', 'created')
 
-admin.site.register(Post, PostAdmin)
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('content', 'topic', 'created')
+
+admin.site.register(Category)
+admin.site.register(Topic, TopicAdmin)
+admin.site.register(Comment, CommentAdmin)
