@@ -63,7 +63,23 @@ class TopicShow(ListView):
         return context
 
 
-class PostVote(View):
+class TopicAdd(CreateView):
+    """
+    Create a new topic.
+    """
+    pass
+
+
+class CommentAdd(CreateView):
+    """
+    Add a comment to a topic.
+    """
+    model = Comment
+    form_class = CommentForm
+    template_name = 'posts/comment_create.html'
+
+
+class CommentVote(View):
     """
     JSON response of number of votes after voting (either up or down)
     """

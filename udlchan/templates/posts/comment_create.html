@@ -1,0 +1,14 @@
+{% extends "posts/base.html" %}
+
+{% block posts_content %}
+    <h2>Comment</h2>
+
+    <form method="POST">
+        {% if form.errors %}
+            <p>Form validation errors!</p>
+        {% endif %}
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Reply</button>
+    </form>
+{% endblock %}

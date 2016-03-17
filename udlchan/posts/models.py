@@ -39,7 +39,8 @@ class Comment(AbstractTimeStamped):
     It will belong to a topic, and it can be nested into other parent Comment.
     """
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    parent = models.ForeignKey('self', null=True, verbose_name='Parent',
+    parent = models.ForeignKey('self', null=True, blank=True,
+                               verbose_name='Parent',
                                on_delete=models.CASCADE,
                                related_name='post_parent')
     content = models.CharField(max_length=10000, default='')
