@@ -78,6 +78,10 @@ class CommentAdd(CreateView):
     form_class = CommentForm
     template_name = 'posts/comment_create.html'
 
+    def get_success_url(self):
+        return reverse('posts:category_topic',
+                       kwargs={'pk': self.kwargs['topic']})
+
 
 class CommentVote(View):
     """
