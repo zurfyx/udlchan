@@ -1,5 +1,5 @@
 from django import forms
-from .models import Category, Post
+from .models import Category, Topic, Comment
 
 
 class CategoryForm(forms.ModelForm):
@@ -10,7 +10,15 @@ class CategoryForm(forms.ModelForm):
         fields = ['title', 'description']
 
 
-class PostForm(forms.ModelForm):
+class TopicForm(forms.ModelForm):
+
     class Meta:
-        model = Post
-        fields = ['title', 'content']
+        model = Topic
+        fields = ['category', 'title', 'content']
+
+
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ['content', 'parent']
