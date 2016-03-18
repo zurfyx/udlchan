@@ -5,6 +5,7 @@ from django.views.generic import ListView, CreateView, DetailView, View
 from .models import Category, Topic, Comment
 from .forms import CategoryForm, TopicForm, CommentForm
 from .utils import PostSorter
+from .mixins import CommentAddAJAXMixin
 
 
 class CategoryList(ListView):
@@ -87,7 +88,7 @@ class TopicAdd(CreateView):
         return context
 
 
-class CommentAdd(CreateView):
+class CommentAdd(CommentAddAJAXMixin, CreateView):
     """
     Add a comment to a topic.
     """
