@@ -1,10 +1,14 @@
 {% extends "posts/base.html" %}
 
 {% block posts_content %}
-    <p>
-        <a href="{% url "posts:category_add" %}">Add category</a>
-    </p>
-    <h2>Categories</h2>
+    <nav>
+        <div class="left">
+            Category
+        </div>
+        <div class="right">
+            <a href="{% url "posts:category_add" %}">Create category</a>
+        </div>
+    </nav>
     <ul>
         {% for category in object_list %}
             <li>
