@@ -2,3 +2,6 @@
 .idea/
 
 udlchan/db.sqlite3
+udlchan/.sass-cache/
+udlchan/static/CACHE/
+udlchan/static_root/
