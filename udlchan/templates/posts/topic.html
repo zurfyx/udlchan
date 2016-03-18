@@ -6,6 +6,8 @@
 {% endblock %}
 
 {% block posts_content %}
+    <a href="{% url "posts:category" object.category %}">{{ object.category }}</a>
+
     <!-- TOPIC -->
     <h2>
         <upvotes>

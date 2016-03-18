@@ -15,6 +15,9 @@ class TopicForm(forms.ModelForm):
     class Meta:
         model = Topic
         fields = ['category', 'title', 'content']
+        widgets = {
+            'category': forms.HiddenInput
+        }
 
 
 class CommentForm(forms.ModelForm):

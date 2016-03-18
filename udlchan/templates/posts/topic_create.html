@@ -1,7 +1,9 @@
 {% extends "posts/base.html" %}
 
 {% block posts_content %}
-    <h2>Topic</h2>
+    <a href="{% url "posts:category" category %}">{{ category }}</a>
+
+    <h2>New topic in {{ category }}</h2>
 
     <form method="POST">
         {% if form.errors %}

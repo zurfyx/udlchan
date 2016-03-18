@@ -71,9 +71,20 @@ class TopicAdd(CreateView):
     form_class = TopicForm
     template_name = 'posts/topic_create.html'
 
+    def get_initial(self):
+        category = get_object_or_404(Category, title=self.kwargs['category'])
+        return {
+            'category': category
+        }
+
     def get_success_url(self):
         return reverse('posts:category',
                        kwargs={'category': self.kwargs['category']})
+
+    def get_context_data(self, **kwargs):
+        context = super(TopicAdd, self).get_context_data(**kwargs)
+        context['category'] = self.kwargs['category']
+        return context
 
 
 class CommentAdd(CreateView):
