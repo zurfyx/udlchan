@@ -5,11 +5,12 @@ class CommentAddAJAXMixin(object):
     AJAX response to create topic.
     """
     #@ajax_required
-    def form_valid(self):
-        pass
+    def form_valid(self, form):
+        print 'bye'
 
-    def form_invalid(self):
+    def form_invalid(self, form):
         return JsonResponse({
-            'msg': 'hello'
+            'error': 'Invalid form',
+            'errors': form.errors
         })
 

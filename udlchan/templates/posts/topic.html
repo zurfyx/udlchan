@@ -25,6 +25,14 @@
     <hr>
     <hr>
 
+    <!--. ADD NEW COMMENT -->
+    <form method="POST" action="#">
+        <input type="hidden" name="topic" value="{{ object.id }}" />
+        <input type="hidden" name="parent" value="" />
+        <textarea name="content"></textarea>
+        <button type="submit">Save</button>
+    </form>
+
     <!-- COMMENTS -->
     {% for comment in comments %}
         <p>
