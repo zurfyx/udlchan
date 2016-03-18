@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from django.core import serializers
 
 class CommentAddAJAXMixin(object):
     """
@@ -6,11 +7,16 @@ class CommentAddAJAXMixin(object):
     """
     #@ajax_required
     def form_valid(self, form):
-        print 'bye'
+        form.save()
+        return JsonResponse({
+            'status': 'success'
+        })
 
+    #@ajax_required
     def form_invalid(self, form):
         return JsonResponse({
-            'error': 'Invalid form',
-            'errors': form.errors
+            'status': 'error',
+            'data': form.errors,
+            'message': 'Invalid form'
         })
 

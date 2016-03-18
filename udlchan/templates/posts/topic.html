@@ -1,7 +1,7 @@
 {% extends "posts/base.html" %}
 {% load static %}
 
-{% block scripts %}
+{% block local_scripts %}
     <script src="{% static "js/posts/vote.js" %}"></script>
     <script src="{% static "js/posts/comment.js" %}"></script>
 {% endblock %}
@@ -25,11 +25,10 @@
     <hr>
     <hr>
 
-    <!--. ADD NEW COMMENT -->
-    <form method="POST" action="#">
-        <input type="hidden" name="topic" value="{{ object.id }}" />
-        <input type="hidden" name="parent" value="" />
-        <textarea name="content"></textarea>
+    <!-- ADD NEW COMMENT -->
+    <form class="new_comment" method="POST" action="{% url "posts:comment_add" object.id %}">
+        {% csrf_token %}
+        {{ form }}
         <button type="submit">Save</button>
     </form>
 

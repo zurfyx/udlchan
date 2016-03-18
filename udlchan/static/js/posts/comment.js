@@ -1,34 +1,29 @@
 (function($) {
 
-    var comment = {
-        ajax: function(href, callback) {
-            params = {'csrfmiddlewaretoken': 'TKERa2Ld2TZLLS4y7Tm8npCOTXeBCt0R'}
-            $.post(href, params, function(data, err) {
-                return callback(data);
-            }).fail(function() {
-                return callback('Error!');
-            });
-        },
-        listener: function() {
-            var self = this;
-            $('p').click(function(e) {
-                var voteObj = $(this);
-                var href = '1/comment';
-                e.preventDefault();
+    var ELEMENT = $('form.new_comment');
 
-                self.ajax(href, function(data) {
-                    console.log(data);
-                });
-
-            });
-        },
-        init: function() {
-            this.listener();
+    function processAJAXData(data) {
+        if (data.status === 'error') {
+            alert(data.message);
+            return;
         }
-    };
+        console.log('Successfully posted! :-)');
+    }
+
+    function listener() {
+        ELEMENT.submit(function(e) {
+            var href = $(this).attr('action')
+            var data = $(this).serialize();
+            e.preventDefault();
+
+            $.post(href, data, processAJAXData).fail(function() {
+                alert('Failed to retrieve data');
+            });
+        });
+    }
 
     ///
 
-    comment.init();
+    listener();
 
 })(jQuery);

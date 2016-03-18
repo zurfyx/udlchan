@@ -35,7 +35,7 @@ urlpatterns = [
 
     # Show topic
     url(
-        r'^topic/(?P<pk>\d+)$',
+        r'^topic/(?P<topic>\d+)$',
         TopicShow.as_view(),
         name='topic'
     ),

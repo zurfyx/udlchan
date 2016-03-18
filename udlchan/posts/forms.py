@@ -25,3 +25,7 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['topic', 'parent', 'content']
+        widgets = {
+            'topic': forms.HiddenInput,
+            'parent': forms.HiddenInput
+        }

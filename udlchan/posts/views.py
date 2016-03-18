@@ -54,13 +54,15 @@ class TopicShow(ListView):
     template_name = 'posts/topic.html'
 
     def get_queryset(self):
-        self.object = get_object_or_404(self.model, id=self.kwargs['pk'])
+        self.object = get_object_or_404(self.model, id=self.kwargs['topic'])
         self.comments = Comment.objects.filter(topic=self.object)
 
     def get_context_data(self, **kwargs):
         context = super(TopicShow, self).get_context_data(**kwargs)
         context['object'] = self.object
         context['comments'] = self.comments
+        form_initial = {'topic':self.kwargs['topic']}
+        context['form'] = CommentForm(initial=form_initial)
         return context
 
 
@@ -99,6 +101,7 @@ class CommentAdd(CommentAddAJAXMixin, CreateView):
     def get_success_url(self):
         return reverse('posts:topic',
                        kwargs={'pk': self.kwargs['topic']})
+
 
 class VoteGeneric(View):
     """
