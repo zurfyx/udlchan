@@ -9,11 +9,11 @@
     <!-- TOPIC -->
     <h2>
         <upvotes>
-            <a class="vote" href="{% url "posts:post_upvote" object.id %}">&uarr;</a>
+            <a class="vote" href="{% url "posts:topic_upvote" object.id %}">&uarr;</a>
             <span class="vote_label">{{ object.vote.up }}</span>
         </upvotes>
         <downvotes>
-            <a class="vote" href="{% url "posts:post_downvote" object.id %}">&darr;</a>
+            <a class="vote" href="{% url "posts:topic_downvote" object.id %}">&darr;</a>
             <span class="vote_label">{{ object.vote.down }}</span>
         </downvotes>
         {{ object.title }}

@@ -31,6 +31,9 @@ class Topic(AbstractTimeStamped):
     content = models.CharField(max_length=10000, default='')
     vote = VoteManager()
 
+    def __str__(self):
+        return self.title
+
 
 class Comment(AbstractTimeStamped):
     """

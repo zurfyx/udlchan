@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
 from .views import CategoryList, CategoryAdd
-from .views import TopicList, TopicShow, TopicAdd
+from .views import TopicList, TopicShow, TopicAdd, TopicVote
 from .views import CommentAdd, CommentVote
 
 urlpatterns = [
@@ -47,17 +47,31 @@ urlpatterns = [
         name='comment_add'
     ),
 
-    # Upvote post
+    # Upvote topic
     url(
-        r'^topic/(?P<post>\d+)/up$',
-        CommentVote().upvote,
-        name='post_upvote'
+        r'^topic/(?P<topic>\d+)/up$',
+        TopicVote().upvote,
+        name='topic_upvote'
     ),
 
-    # Downvote post
+    # Downvote topic
     url(
-        r'^topic/(?P<post>\d+)/down$',
+        r'^topic/(?P<topic>\d+)/down$',
+        TopicVote().downvote,
+        name='topic_downvote'
+    ),
+
+    # Upvote comment
+    url(
+        r'^commnent/(?P<comment>\d+)/up$',
+        CommentVote().upvote,
+        name='comment_upvote'
+    ),
+
+    # Downvote comment
+    url(
+        r'^comment/(?P<comment>\d+)/down$',
         CommentVote().downvote,
-        name='post_downvote'
+        name='comment_downvote'
     ),
 ]

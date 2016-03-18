@@ -88,22 +88,24 @@ class CommentAdd(CreateView):
         return reverse('posts:topic',
                        kwargs={'pk': self.kwargs['topic']})
 
-
-class CommentVote(View):
+class VoteGeneric(View):
     """
     JSON response of number of votes after voting (either up or down)
     """
-    model = Comment
+    model = None
 
-    def vote(self, post, up=True):
-        post = get_object_or_404(self.model, id=post)
-        votes = post.vote.upvote() if up else post.vote.downvote()
+    def __init__(self, model):
+        self.model = model
+
+    def vote(self, object, up=True):
+        object = get_object_or_404(self.model, id=object)
+        votes = object.vote.upvote() if up else object.vote.downvote()
         return votes
 
-    def upvote(self, request, post):
-        upvotes = self.vote(post, True)
+    def upvote(self, request, object):
+        upvotes = self.vote(object, True)
         return JsonResponse({
-            'post': post,
+            'object_id': object,
             'votes': upvotes,
             'votes_type': 'up'
         })
@@ -115,3 +117,29 @@ class CommentVote(View):
             'votes': downvotes,
             'votes_type': 'down'
         })
+
+
+class TopicVote(VoteGeneric):
+    model = Topic
+
+    def __init__(self):
+        super(TopicVote, self).__init__(self.model)
+
+    def upvote(self, request, topic):
+        return super(TopicVote, self).upvote(request, topic)
+
+    def downvote(self, request, topic):
+        return super(TopicVote, self).downvote(request, topic)
+
+
+class CommentVote(VoteGeneric):
+    model = Comment
+
+    def __init__(self):
+        super(CommentVote, self).__init__(self.model)
+
+    def upvote(self, request, topic):
+        return super(CommentVote, self).upvote(request, topic)
+
+    def downvote(self, request, topic):
+        return super(CommentVote, self).downvote(request, topic)
