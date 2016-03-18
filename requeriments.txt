@@ -1,3 +1,6 @@
 Django==1.9.4
-argparse==1.2.1
-wsgiref==0.1.2
+django-appconf==1.0.1
+django-compressor==2.0
+rcssmin==1.0.6
+rjsmin==1.0.12
+six==1.10.0
