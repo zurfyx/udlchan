@@ -4,6 +4,7 @@
 {% block local_scripts %}
     <script src="{% static "js/posts/vote.js" %}"></script>
     <script src="{% static "js/posts/comment.js" %}"></script>
+    <script src="{% static "js/posts/new_comment.js" %}"></script>
 {% endblock %}
 
 {% block nav %}
@@ -28,14 +29,16 @@
         <!-- ADD NEW COMMENT -->
         <form class="new_comment" method="POST" action="{% url "posts:comment_add" object.id %}">
             {% include "basic_form_partial.html" %}
-            <button type="submit">Save</button>
+            <div>
+                <button type="submit">Save</button>
+            </div>
         </form>
     </div>
 
     <!-- COMMENTS -->
     <ul class="fit-width element-list" style="margin-top:10px;">
         {% for comment in comments %}
-            <li class="shadowed element">
+            <li class="shadowed element comment">
                 <span class="irrelevant right">
                     {{ comment.created }}
                 </span>
@@ -44,14 +47,14 @@
 
                 <ul class="element-links">
                     <li>
-                       <a href="#">Reply</a>
+                       <a class="do-reply" href="#">Reply</a>
                     </li>
                     <li>
                         <a href="#">Permalink</a>
                     </li>
                 </ul>
 
-                <div class="reply">
+                <div class="reply-form">
                     {# auto-generated #}
                 </div>
             </li>

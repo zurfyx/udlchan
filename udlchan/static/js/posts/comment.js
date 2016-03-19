@@ -1,4 +1,5 @@
 (function($) {
+    /** Submit comment form, then adds it into the HTML. **/
 
     var ELEMENT = $('form.new_comment');
 
@@ -17,7 +18,7 @@
             e.preventDefault();
 
             $.post(href, data, processAJAXData).fail(function() {
-                alert('Failed to retrieve data');
+                alert('Failed to retrieve data from the server.');
             });
         });
     }
