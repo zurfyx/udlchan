@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import View, ListView, CreateView, RedirectView
 from .models import Category, Topic, Comment
 from .forms import CategoryForm, TopicForm, CommentForm
-from .utils import PostSorter
+from .utils import CommentSorter
 from .mixins import CommentAddAJAXMixin
 
 
@@ -60,7 +60,7 @@ class TopicShow(ListView):
     def get_context_data(self, **kwargs):
         context = super(TopicShow, self).get_context_data(**kwargs)
         context['object'] = self.object
-        context['comments'] = self.comments
+        context['comments'] = CommentSorter.sort(self.comments)
         form_initial = {'topic':self.kwargs['topic']}
         context['form'] = CommentForm(initial=form_initial)
         return context

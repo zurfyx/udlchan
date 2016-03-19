@@ -1,16 +1,16 @@
-class PostSorter:
+class CommentSorter(object):
     @staticmethod
-    def sort(posts):
+    def sort(comments):
         """
         Sorts a list of Post objects and writes the nest level
-        Use like sort(Post.objects.filter(main=<post>))
-        :param posts: List of Post objects
-        :return: sorted list with nest level
+        Use like sort(Comment.objects.filter(topic=<topic>))
+        :param posts: List of Comment objects
+        :return: sorted list of Comment with nest level
         """
         # sort taking parents into consideration
         # dict by parent
         parent_posts = {}
-        for post in posts:
+        for post in comments:
             parent = post.parent
             if parent in parent_posts:
                 parent_posts[parent].append(post)
