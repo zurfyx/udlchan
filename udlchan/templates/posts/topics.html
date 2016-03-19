@@ -1,20 +1,26 @@
 {% extends "posts/base.html" %}
 
+{% block nav %}
+    <a href="{% url "posts:category" %}">Categories</a> >
+    <a href="{% url "posts:category" category.title %}">{{ category }}</a> |
+    <a href="{% url "posts:topic_add" category.title %}">Create topic</a>
+{% endblock %}
+
 {% block posts_content %}
-    <p>
-        <a href="{% url "posts:category" %}">Categories</a>
-        <a href="{% url "posts:topic_add" category.title %}">Create topic</a>
-    </p>
     <h2>{{ category }}</h2>
-    <ul>
-        {% for post in object_list %}
-            <li>
-                <a href="{% url "posts:topic" post.id %}">
-                    {{ post.title }}
-                </a>
-                <br>
-                {{ post.content | truncatechars:10 }}
-            </li>
+    <ul class="fit-width element-list">
+        {% for topic in object_list %}
+            <a href="{% url "posts:topic" topic.id %}">
+                <li class="shadowed element">
+                    <span class="go right">
+                        &#10148;
+                    </span>
+                    <span class="element-title">
+                        {{ topic.title }}
+                    </span>
+                    {{ topic.content | truncatechars:30 }}
+                </li>
+            </a>
         {% endfor %}
     </ul>
 {% endblock %}

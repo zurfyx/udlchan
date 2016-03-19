@@ -1,0 +1,44 @@
+header {
+  @include vertical-shadow(4px);
+  color: $primary-color-alt;
+  background-color: $primary-bg-color;
+  padding: 3px;
+  z-index:2;
+  margin-bottom:4px;
+}
+
+nav {
+  display:inline-block;
+
+  a, a:hover {
+    color: #fff;
+  }
+}
+
+ul.element-list {
+  padding: 0;
+  list-style:none;
+
+  li.element {
+    &:not(last-child) {
+      margin-bottom: 10px;
+    }
+
+    .go {
+      visibility: hidden;
+    }
+  }
+
+  li.element:hover .go {
+    visibility: inherit;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  .element-title {
+    display:block;
+    font-weight: 600;
+  }
+}

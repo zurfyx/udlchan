@@ -18,10 +18,15 @@
 <body>
     <header>
         <h1>UDLChan</h1>
+        <nav>
+            {% block nav %}{% endblock %}
+        </nav>
     </header>
 
-    {% block content %}
-    {% endblock %}
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
 
     {% block cdn_scripts %}
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

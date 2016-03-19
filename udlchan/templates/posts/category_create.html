@@ -1,15 +1,17 @@
 {% extends "posts/base.html" %}
 
+{% block nav %}
+    <a href="{%  url "posts:category" %}">Categories</a> |
+    <a href="{% url "posts:category_add" %}">New category</a>
+{% endblock %}
+
 {% block posts_content %}
-<h2>Add category</h2>
+    <h2>New category</h2>
 
-<form method="POST">
-    {% if form.errors %}
-    <p>Form validation errors!</p>
-    {% endif %}
-
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Create</button>
-</form>
+    <div class="center-form shadowed element">
+        <form method="POST">
+            {% include "basic_form_partial.html" %}
+            <button class="right btn" type="submit">Create</button>
+        </form>
+    </div>
 {% endblock %}
