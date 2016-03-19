@@ -8,7 +8,7 @@
 
 {% block posts_content %}
     <h2>{{ category }}</h2>
-    <ul class="fit-width element-list">
+    <ul class="fit-width element-list push-up">
         {% for topic in object_list %}
             <a href="{% url "posts:topic" topic.id %}">
                 <li class="shadowed element">

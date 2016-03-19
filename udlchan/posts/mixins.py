@@ -17,6 +17,6 @@ class CommentAddAJAXMixin(object):
         return JsonResponse({
             'status': 'error',
             'data': form.errors,
-            'message': 'Invalid form'
+            'message': 'Form validated with errors'
         })
 

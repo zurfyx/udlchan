@@ -6,37 +6,42 @@
     <script src="{% static "js/posts/comment.js" %}"></script>
 {% endblock %}
 
+{% block nav %}
+    <a href="{% url "posts:category" %}">Categories</a> >
+    <a href="{% url "posts:category" object.category %}">{{ object.category }}</a> >
+    <a href="{% url "posts:topic" object.id %}">{{ object.title }}</a>
+{% endblock %}
+
 {% block posts_content %}
-    <a href="{% url "posts:category" object.category %}">{{ object.category }}</a>
+    <h2>{{ object.category }}</h2>
 
     <!-- TOPIC -->
-    <h2>
-        <upvotes>
-            <a class="vote" href="{% url "posts:topic_upvote" object.id %}">&uarr;</a>
-            <span class="vote_label">{{ object.vote.up }}</span>
-        </upvotes>
-        <downvotes>
-            <a class="vote" href="{% url "posts:topic_downvote" object.id %}">&darr;</a>
-            <span class="vote_label">{{ object.vote.down }}</span>
-        </downvotes>
-        {{ object.title }}
-    </h2>
-    <p>{{ object.content }}</p>
-    <hr>
-    <hr>
+    <div class="fit-width shadowed element push-up">
+        <span class="right irrelevant">
+            {{ object.created }}
+        </span>
+        <span class="element-title">
+            {{ object.title }}
+        </span>
+        {{ object.content }}
 
-    <!-- ADD NEW COMMENT -->
-    <form class="new_comment" method="POST" action="{% url "posts:comment_add" object.id %}">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Save</button>
-    </form>
+        <!-- ADD NEW COMMENT -->
+        <form class="new_comment" method="POST" action="{% url "posts:comment_add" object.id %}">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Save</button>
+        </form>
+    </div>
 
     <!-- COMMENTS -->
-    {% for comment in comments %}
-        <p>
-            {{ comment.content }}
-        </p>
-        <hr>
-    {% endfor %}
+    <ul class="fit-width element-list" style="margin-top:10px;">
+        {% for comment in comments %}
+            <li class="shadowed element">
+                <span class="irrelevant right">
+                    {{ comment.created }}
+                </span>
+                {{ comment.content }}
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

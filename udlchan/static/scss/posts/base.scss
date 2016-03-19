@@ -1,9 +1,11 @@
+@import "topic.scss";
+
 header {
   @include vertical-shadow(4px);
   color: $primary-color-alt;
   background-color: $primary-bg-color;
   padding: 3px;
-  z-index:2;
+  z-index:3;
   margin-bottom:4px;
 }
 
@@ -37,8 +39,4 @@ ul.element-list {
     text-decoration: none;
   }
 
-  .element-title {
-    display:block;
-    font-weight: 600;
-  }
 }

@@ -7,6 +7,7 @@ $primary-bg-color-alt: #fcdbff;
 $default-color: #444;
 $default-bg-color: #eaeaea;
 $error-color: #f00;
+$irrelevant-color: #888;
 
 /* GLOBAL FUNCTIONS */
 
@@ -73,15 +74,30 @@ a {
   background-color:#fff;
   border-radius:1px;
   padding: 11px 15px 11px 15px;
-}
 
-.shadowed {
- box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.12);
+  .element-title {
+    display:block;
+    font-weight: 600;
+  }
 }
 
 .fit-width {
   margin: 0 auto;
   width: 80%;
+}
+
+.irrelevant {
+  font-size: 10px;
+  color: $irrelevant-color;
+}
+
+.shadowed {
+  box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.12);
+}
+
+.push-up {
+  position: relative;
+  margin-top: -10px;
 }
 
 #content {

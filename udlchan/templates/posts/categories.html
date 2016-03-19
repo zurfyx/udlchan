@@ -6,7 +6,9 @@
 {% endblock %}
 
 {% block posts_content %}
-    <ul class="fit-width element-list">
+    <h2>Categories</h2>
+
+    <ul class="fit-width element-list push-up">
         {% for category in object_list %}
             <a href="{% url "posts:category" category.title %}">
                 <li class="shadowed element">
