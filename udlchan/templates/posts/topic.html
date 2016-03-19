@@ -28,7 +28,7 @@
         {{ object.content }}
 
         <!-- ADD NEW COMMENT -->
-        <form class="new_comment" method="POST" action="{% url "posts:comment_add" object.id %}">
+        <form class="new-comment" method="POST" action="{% url "posts:comment_add" object.id %}">
             {% include "basic_form_partial.html" %}
             <div>
                 <button type="submit">Save</button>
@@ -39,7 +39,12 @@
     <!-- COMMENTS -->
     <ul class="fit-width element-list" style="margin-top:10px;">
         {% for comment in comments %}
-            <li class="shadowed element comment">
+            <li class="shadowed element comment
+                {% if comment.nest_level > 0 %}element-comment-reply{% endif %}"
+                level="{{ comment.nest_level }}"
+            ><div style="padding-left: {% widthratio 15 1 comment.nest_level %}">
+
+                <!-- ELEMENT -->
                 <span class="irrelevant right">
                     {{ comment.created }}
                 </span>
@@ -62,7 +67,9 @@
                 <div class="reply-form">
                     {# auto-generated #}
                 </div>
-            </li>
+                <!-- /ELEMENT -->
+
+            </div></li>
         {% endfor %}
     </ul>
 {% endblock %}

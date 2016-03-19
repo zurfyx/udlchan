@@ -1,6 +1,6 @@
 (function($) {
     /** Generates new form for the comment HTML element **/
-    var ORIGINAL_FORM = $('.new_comment')[0];
+    var ORIGINAL_FORM = $('.new-comment')[0];
     var COMMENT_ELEMENT = '.element';
     var REPLY_FORM = '.reply-form';
     var REPLY_CANCEL = '.reply-cancel';

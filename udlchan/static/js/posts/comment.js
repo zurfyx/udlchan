@@ -1,7 +1,7 @@
 (function($) {
     /** Submit comment form, then adds it into the HTML. **/
 
-    var ELEMENT = $('form.new_comment');
+    var ELEMENT = $('form.new-comment');
 
     function processAJAXData(data) {
         if (data.status === 'error') {
