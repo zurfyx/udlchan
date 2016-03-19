@@ -1,8 +1,10 @@
-<upvotes>
-    <a class="vote" href="{% url "posts:topic_upvote" object.id %}">&uarr;</a>
-           <span class="vote_label">{{ object.vote.up }}</span>
-</upvotes>
-<downvotes>
-    <a class="vote" href="{% url "posts:topic_downvote" object.id %}">&darr;</a>
-    <span class="vote_label">{{ object.vote.down }}</span>
-</downvotes>
+<span class="small">
+    <upvotes>
+        <a class="vote" href="{% url upvote_url object.id %}">&uarr;</a>
+        <span class="vote_label">{{ object.vote.up }}</span>
+    </upvotes>
+    <downvotes>
+        <a class="vote" href="{% url downvote_url object.id %}">&darr;</a>
+        <span class="vote_label">{{ object.vote.down }}</span>
+    </downvotes>
+</span>

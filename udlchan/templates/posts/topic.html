@@ -21,6 +21,7 @@
         <span class="right irrelevant">
             {{ object.created }}
         </span>
+        {% include "posts/votes_display_partial.html" with upvote_url="posts:topic_upvote" downvote_url="posts:topic_downvote" object=object %}
         <span class="element-title">
             {{ object.title }}
         </span>
@@ -42,6 +43,10 @@
                 <span class="irrelevant right">
                     {{ comment.created }}
                 </span>
+
+                <div>
+                    {% include "posts/votes_display_partial.html" with upvote_url="posts:comment_upvote" downvote_url="posts:comment_downvote" object=comment %}
+                </div>
 
                 {{ comment.content }}
 

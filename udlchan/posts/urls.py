@@ -63,7 +63,7 @@ urlpatterns = [
 
     # Upvote comment
     url(
-        r'^commnent/(?P<comment>\d+)/up$',
+        r'^comment/(?P<comment>\d+)/up$',
         CommentVote().upvote,
         name='comment_upvote'
     ),

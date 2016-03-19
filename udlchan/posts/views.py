@@ -152,8 +152,8 @@ class CommentVote(VoteGeneric):
     def __init__(self):
         super(CommentVote, self).__init__(self.model)
 
-    def upvote(self, request, topic):
-        return super(CommentVote, self).upvote(request, topic)
+    def upvote(self, request, comment):
+        return super(CommentVote, self).upvote(request, comment)
 
-    def downvote(self, request, topic):
-        return super(CommentVote, self).downvote(request, topic)
+    def downvote(self, request, comment):
+        return super(CommentVote, self).downvote(request, comment)
