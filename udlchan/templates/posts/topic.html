@@ -27,8 +27,7 @@
 
         <!-- ADD NEW COMMENT -->
         <form class="new_comment" method="POST" action="{% url "posts:comment_add" object.id %}">
-            {% csrf_token %}
-            {{ form }}
+            {% include "basic_form_partial.html" %}
             <button type="submit">Save</button>
         </form>
     </div>
@@ -40,7 +39,21 @@
                 <span class="irrelevant right">
                     {{ comment.created }}
                 </span>
+
                 {{ comment.content }}
+
+                <ul class="element-links">
+                    <li>
+                       <a href="#">Reply</a>
+                    </li>
+                    <li>
+                        <a href="#">Permalink</a>
+                    </li>
+                </ul>
+
+                <div class="reply">
+                    {# auto-generated #}
+                </div>
             </li>
         {% endfor %}
     </ul>

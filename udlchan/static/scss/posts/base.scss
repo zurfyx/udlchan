@@ -29,6 +29,20 @@ ul.element-list {
     .go {
       visibility: hidden;
     }
+
+    ul.element-links {
+      list-style: none;
+      padding:0;
+
+      li {
+        display: inline;
+        list-style-type: none;
+      }
+
+      li a {
+        @extend .irrelevant;
+      }
+    }
   }
 
   li.element:hover .go {

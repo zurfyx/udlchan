@@ -1,0 +1,16 @@
+.new_comment {
+  label {
+    display: none;
+  }
+
+  textarea {
+    height: 50px;
+    margin-top: 15px;
+    width: 40%;
+    min-width: 200px;
+  }
+
+  button[type=submit] {
+    margin-top: 5px;
+  }
+}

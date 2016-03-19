@@ -27,5 +27,6 @@ class CommentForm(forms.ModelForm):
         fields = ['topic', 'parent', 'content']
         widgets = {
             'topic': forms.HiddenInput,
-            'parent': forms.HiddenInput
+            'parent': forms.HiddenInput,
+            'content': forms.Textarea(attrs={'placeholder': 'Content'})
         }
