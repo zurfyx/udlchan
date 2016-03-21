@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.core.urlresolvers import reverse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import View, ListView, CreateView, RedirectView
 from .models import Category, Topic, Comment
 from .forms import CategoryForm, TopicForm, CommentForm
@@ -90,16 +90,18 @@ class TopicAdd(CreateView):
         return context
 
 
-class CommentAdd(CommentAddAJAXMixin, RedirectView):
+class CommentAdd(CommentAddAJAXMixin, CreateView):
     """
     Add a comment to a topic. Redirects to topic if not an AJAX request.
     """
-    permanent = False
-    query_string = True
-    pattern_name = 'posts:topic'
+    model = Comment
+    form_class = CommentForm
+    template_name = 'posts/comment_create.html'
 
-    def get_redirect_url(self, *args, **kwargs):
-        return super(CommentAdd, self).get_redirect_url(*args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        if request.is_ajax():
+            return super(CommentAdd, self).get(request, args, kwargs)
+        return redirect('posts:topic', topic=self.kwargs['topic'])
 
 
 class VoteGeneric(View):
