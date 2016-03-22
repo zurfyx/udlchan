@@ -86,7 +86,8 @@ class TopicAdd(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(TopicAdd, self).get_context_data(**kwargs)
-        context['category'] = self.kwargs['category']
+        category = get_object_or_404(Category, slug=self.kwargs['category'])
+        context['category'] = category
         return context
 
 

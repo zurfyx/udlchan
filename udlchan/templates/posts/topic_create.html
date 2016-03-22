@@ -2,8 +2,8 @@
 
 {% block nav %}
     <a href="{% url "posts:categories" %}">Categories</a> >
-    <a href="{% url "posts:category" category %}">{{ category }}</a> >
-    <a href="{% url "posts:topic_add" category.title %}">New topic</a>
+    <a href="{% url "posts:category" category.slug %}">{{ category }}</a> >
+    <a href="{% url "posts:topic_add" category.slug %}">New topic</a>
 {% endblock %}
 
 {% block posts_content %}

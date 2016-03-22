@@ -59,7 +59,7 @@ a {
 .center-form {
   @extend .center;
   @extend .clear;
-  width: 500px;
+  max-width: 500px;
 }
 
 .corner-btn {
