@@ -1,18 +1,21 @@
 from django.http import JsonResponse
-from django.core import serializers
+from .decorators import ajax_required
+
 
 class CommentAddAJAXMixin(object):
     """
     AJAX response to create topic.
     """
-    #@ajax_required
+    @ajax_required
+    def get(self, request, *args, **kwargs):
+        pass
+
     def form_valid(self, form):
         form.save()
         return JsonResponse({
             'status': 'success'
         })
 
-    #@ajax_required
     def form_invalid(self, form):
         return JsonResponse({
             'status': 'error',

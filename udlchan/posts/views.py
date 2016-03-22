@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.core.urlresolvers import reverse
-from django.shortcuts import get_object_or_404, redirect
-from django.views.generic import View, ListView, CreateView, RedirectView
+from django.shortcuts import get_object_or_404
+from django.views.generic import View, ListView, CreateView
 from .models import Category, Topic, Comment
 from .forms import CategoryForm, TopicForm, CommentForm
 from .utils import CommentSorter
@@ -100,9 +100,7 @@ class CommentAdd(CommentAddAJAXMixin, CreateView):
     template_name = 'posts/comment_create.html'
 
     def get(self, request, *args, **kwargs):
-        if request.is_ajax():
-            return super(CommentAdd, self).get(request, args, kwargs)
-        return redirect('posts:topic', topic=self.kwargs['topic'])
+        return super(CommentAdd, self).get(request, args, kwargs)
 
 
 class VoteGeneric(View):
