@@ -86,6 +86,12 @@ a {
   width: 80%;
 }
 
+@media (max-width: 800px) {
+  .fit-width {
+    width: 95%;
+  }
+}
+
 .irrelevant {
   font-size: 10px;
   color: $irrelevant-color;
