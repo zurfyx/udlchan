@@ -1,7 +1,7 @@
 {% extends "posts/base.html" %}
 
 {% block nav %}
-    <a href="{%  url "posts:category" %}">Categories</a>
+    <a href="{%  url "posts:categories" %}">Categories</a>
 {% endblock %}
 
 {% block posts_content %}
@@ -10,7 +10,7 @@
 
     <ul class="fit-width element-list push-up">
         {% for category in object_list %}
-            <a href="{% url "posts:category" category.title %}">
+            <a href="{% url "posts:category" category.slug %}">
                 <li class="shadowed element">
                     <span class="go right">
                         &#10148;

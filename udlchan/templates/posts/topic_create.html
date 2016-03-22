@@ -1,7 +1,7 @@
 {% extends "posts/base.html" %}
 
 {% block nav %}
-    <a href="{% url "posts:category" %}">Categories</a> >
+    <a href="{% url "posts:categories" %}">Categories</a> >
     <a href="{% url "posts:category" category %}">{{ category }}</a> >
     <a href="{% url "posts:topic_add" category.title %}">New topic</a>
 {% endblock %}

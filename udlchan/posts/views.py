@@ -25,7 +25,7 @@ class CategoryAdd(CreateView):
     template_name = 'posts/category_create.html'
 
     def get_success_url(self):
-        return reverse('posts:category')
+        return reverse('posts:categories')
 
 
 class TopicList(ListView):
@@ -37,7 +37,7 @@ class TopicList(ListView):
 
     def get_queryset(self):
         self.category = get_object_or_404(Category,
-                                          title=self.kwargs['category'])
+                                          slug=self.kwargs['category'])
         return self.model.objects.filter(category=self.category)
 
     def get_context_data(self, **kwargs):
@@ -75,7 +75,7 @@ class TopicAdd(CreateView):
     template_name = 'posts/topic_create.html'
 
     def get_initial(self):
-        category = get_object_or_404(Category, title=self.kwargs['category'])
+        category = get_object_or_404(Category, slug=self.kwargs['category'])
         return {
             'category': category
         }

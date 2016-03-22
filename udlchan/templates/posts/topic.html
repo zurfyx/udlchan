@@ -8,8 +8,8 @@
 {% endblock %}
 
 {% block nav %}
-    <a href="{% url "posts:category" %}">Categories</a> >
-    <a href="{% url "posts:category" object.category %}">{{ object.category }}</a> >
+    <a href="{% url "posts:categories" %}">Categories</a> >
+    <a href="{% url "posts:category" object.category.slug %}">{{ object.category.title }}</a> >
     <a href="{% url "posts:topic" object.id %}">{{ object.title }}</a>
 {% endblock %}
 

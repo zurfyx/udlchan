@@ -1,13 +1,13 @@
 {% extends "posts/base.html" %}
 
 {% block nav %}
-    <a href="{% url "posts:category" %}">Categories</a> >
-    <a href="{% url "posts:category" category.title %}">{{ category }}</a>
+    <a href="{% url "posts:categories" %}">Categories</a> >
+    <a href="{% url "posts:category" category.slug %}">{{ category.title }}</a>
 {% endblock %}
 
 {% block posts_content %}
     <h2>{{ category }}</h2>
-    <a class="corner-btn" href="{% url "posts:topic_add" category.title %}">+</a>
+    <a class="corner-btn" href="{% url "posts:topic_add" category.slug %}">+</a>
 
     <ul class="fit-width element-list push-up">
         {% for topic in object_list %}

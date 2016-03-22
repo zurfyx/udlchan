@@ -7,7 +7,10 @@ class CategoryForm(forms.ModelForm):
 
     class Meta:
         model = Category
-        fields = ['title', 'description']
+        fields = ['title', 'slug', 'description']
+        labels = {
+            'slug': 'URL (i.e. online-games)'
+        }
 
 
 class TopicForm(forms.ModelForm):

@@ -9,7 +9,7 @@ urlpatterns = [
     url(
         r'^$',
         CategoryList.as_view(),
-        name='category'
+        name='categories'
     ),
 
     # Add new category
@@ -21,14 +21,14 @@ urlpatterns = [
 
     # List of topics in a category
     url(
-        r'^category/(?P<category>\w+)$',
+        r'^category/(?P<category>[\w-]+)$',
         TopicList.as_view(),
         name='category'
     ),
 
     # Add new topic
     url(
-        r'^category/(?P<category>\w+)/topic$',
+        r'^category/(?P<category>[\w-]+)/topic$',
         TopicAdd.as_view(),
         name='topic_add'
     ),
