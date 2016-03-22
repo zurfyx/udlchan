@@ -41,6 +41,7 @@
         {% for comment in comments %}
             <li class="shadowed element comment
                 {% if comment.nest_level > 0 %}element-comment-reply{% endif %}"
+                comment="{{ comment.id }}"
                 level="{{ comment.nest_level }}"
             ><div style="padding-left: {% widthratio 15 1 comment.nest_level %}">
 

@@ -1,7 +1,7 @@
 (function($) {
     /** Submit comment form, then adds it into the HTML. **/
 
-    var ELEMENT = $('form.new-comment');
+    var ELEMENT = 'form.new-comment';
 
     function processAJAXData(data) {
         if (data.status === 'error') {
@@ -12,8 +12,8 @@
     }
 
     function listener() {
-        ELEMENT.submit(function(e) {
-            var href = $(this).attr('action')
+        $('body').on('submit', ELEMENT, function(e) {
+            var href = $(this).attr('action');
             var data = $(this).serialize();
             e.preventDefault();
 
