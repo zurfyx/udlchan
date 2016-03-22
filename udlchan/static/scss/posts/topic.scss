@@ -1,3 +1,9 @@
+.element .reply-log span {
+  @extend .small;
+  color: #0d9937;
+  display: block;
+}
+
 .element-comment-reply {
   margin-top:-10px;
 }
