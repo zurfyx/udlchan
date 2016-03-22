@@ -41,7 +41,8 @@
     <!-- COMMENTS -->
     <ul class="fit-width element-list" style="margin-top:10px;">
         {% for comment in comments %}
-            <li class="shadowed element comment
+            <li id="comment_{{ comment.id }}"
+                class="shadowed element comment
                 {% if comment.nest_level > 0 %}element-comment-reply{% endif %}"
                 comment="{{ comment.id }}"
                 level="{{ comment.nest_level }}"
@@ -63,7 +64,7 @@
                        <a class="do-reply" href="#">Reply</a>
                     </li>
                     <li>
-                        <a href="#">Permalink</a>
+                        <a href="#comment_{{ comment.id }}">Permalink</a>
                     </li>
                 </ul>
 
