@@ -30,7 +30,7 @@
             this.append_cancel_button();
             element.html(this.form);
         }
-    }
+    };
 
     function listener_reply() {
         $('a.do-reply').click(function(e) {
